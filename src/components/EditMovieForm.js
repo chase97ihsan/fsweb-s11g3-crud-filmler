@@ -41,6 +41,7 @@ const EditMovieForm = (props) => {
       .put(`http://localhost:9000/api/movies/${id}`, movie)
 
       .then((res) => {
+        console.log(res.data);
         setMovies(res.data);
       })
       .catch((err) => {

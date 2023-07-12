@@ -58,7 +58,7 @@ const Movie = (props) => {
           Favorilere ekle
         </button>
         <Link
-          to={`/movies/edit/${movie.id}`}
+          to={`/movies/edit/${id}`}
           className="myButton bg-blue-600 hover:bg-blue-500"
         >
           Edit
