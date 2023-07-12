@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import axios from "axios";
 
-const EditMovieForm = (props) => {
+export const AddMovieForm = (props) => {
   const { push } = useHistory();
   const { id } = useParams();
 
@@ -24,21 +24,10 @@ const EditMovieForm = (props) => {
     });
   };
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:9000/api/movies/${id}`)
-      .then((res) => {
-        console.log(res.data);
-        setMovie(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [id]);
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:9000/api/movies/${id}`, movie)
+      .post("http://localhost:9000/api/movies/", movie)
 
       .then((res) => {
         setMovies(res.data);
@@ -46,7 +35,7 @@ const EditMovieForm = (props) => {
       .catch((err) => {
         console.log(err);
       });
-    push(`/movies/${id}`);
+    push("/movies");
   };
 
   const { title, director, genre, metascore, description } = movie;
@@ -62,7 +51,7 @@ const EditMovieForm = (props) => {
 
         <div className="px-5 py-3">
           <div className="py-2">
-            <label className="block pb-1 text-lg">Title</label>
+            <label className="block pb-1 text-lg"></label>
             <input
               value={title}
               onChange={handleChange}
@@ -71,7 +60,7 @@ const EditMovieForm = (props) => {
             />
           </div>
           <div className="py-2">
-            <label className="block pb-1 text-lg">Director</label>
+            <label className="block pb-1 text-lg"></label>
             <input
               value={director}
               onChange={handleChange}
@@ -80,7 +69,7 @@ const EditMovieForm = (props) => {
             />
           </div>
           <div className="py-2">
-            <label className="block pb-1 text-lg">Genre</label>
+            <label className="block pb-1 text-lg"></label>
             <input
               value={genre}
               onChange={handleChange}
@@ -89,7 +78,7 @@ const EditMovieForm = (props) => {
             />
           </div>
           <div className="py-2">
-            <label className="block pb-1 text-lg">Metascore</label>
+            <label className="block pb-1 text-lg"></label>
             <input
               value={metascore}
               onChange={handleChange}
@@ -98,7 +87,7 @@ const EditMovieForm = (props) => {
             />
           </div>
           <div className="py-2">
-            <label className="block pb-1 text-lg">Description</label>
+            <label className="block pb-1 text-lg"></label>
             <textarea
               value={description}
               onChange={handleChange}
@@ -122,5 +111,3 @@ const EditMovieForm = (props) => {
     </div>
   );
 };
-
-export default EditMovieForm;
